@@ -35,8 +35,7 @@ except Exception as e:
 
 # 4) Use pandas to print one of the tables as dataframes using read_sql function
 
-table_name = 'authors'  # Replace with the actual name of your table
-df = pd.read_sql(f"SELECT first_name FROM {table_name}", con=engine)
+df = pd.read_sql(f"SELECT * FROM publishers", engine)
 print(df)
 
 engine.dispose()
