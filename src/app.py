@@ -13,10 +13,10 @@ con = engine.connect()
 
 # 2) Execute the SQL sentences to create your tables using the SQLAlchemy's execute function
 with open('src/sql/create.sql', 'r') as file:
-    sql = file.read()
+    create = file.read()
 
 try:
-    con.execute(sql)
+    con.execute(create)
     print("Tables created successfully.")
 except Exception as e:
     print("Error occurred while creating tables:", str(e))
@@ -24,10 +24,10 @@ except Exception as e:
 # 3) Execute the SQL sentences to insert your data using the SQLAlchemy's execute function
 
 with open('src/sql/insert.sql', 'r') as file:
-    sql = file.read()
+    insert = file.read()
 
 try:
-    con.execute(sql)
+    con.execute(insert)
     print("Data inserted successfully.")
 except Exception as e:
     print("Error occurred while inserting data:", str(e))
@@ -35,8 +35,8 @@ except Exception as e:
 
 # 4) Use pandas to print one of the tables as dataframes using read_sql function
 
-table_name = 'books'  # Replace with the actual name of your table
-df = pd.read_sql(f"SELECT * FROM {table_name}", con=engine)
+table_name = 'authors'  # Replace with the actual name of your table
+df = pd.read_sql(f"SELECT first_name FROM {table_name}", con=engine)
 print(df)
 
 engine.dispose()
