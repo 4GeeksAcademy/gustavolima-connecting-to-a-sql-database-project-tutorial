@@ -35,7 +35,7 @@ except Exception as e:
 
 # 4) Use pandas to print one of the tables as dataframes using read_sql function
 
-df = pd.read_sql(f"SELECT * FROM publishers", engine)
-print(df)
+df = pd.read_sql('SELECT * FROM publishers', engine)
+print(df.to_string(index=False))
 
 engine.dispose()
