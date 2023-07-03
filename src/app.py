@@ -12,7 +12,7 @@ engine = create_engine(db_url)
 con = engine.connect()
 
 # 2) Execute the SQL sentences to create your tables using the SQLAlchemy's execute function
-with open('src/sql/create.sql', 'r') as file:
+with open('src/sql/create.sql') as file:
     create = file.read()
 
 try:
@@ -23,7 +23,7 @@ except Exception as e:
 
 # 3) Execute the SQL sentences to insert your data using the SQLAlchemy's execute function
 
-with open('src/sql/insert.sql', 'r') as file:
+with open('src/sql/insert.sql') as file:
     insert = file.read()
 
 try:
@@ -36,6 +36,6 @@ except Exception as e:
 # 4) Use pandas to print one of the tables as dataframes using read_sql function
 
 df = pd.read_sql('SELECT * FROM publishers', engine)
-print(df.to_string(index=False))
+print(df)
 
 engine.dispose()
