@@ -16,23 +16,23 @@ con = engine.connect()
 with open('./src/sql/create.sql') as file:
     create_sql = file.read()
 
-# Eliminar las tablas si existen
+# Delete Tables if they already exist
 con.execute('DROP TABLE IF EXISTS publishers, authors, books, book_authors, epub CASCADE')
 
-# Ejecutar las sentencias SQL para crear las tablas
+# Execute the SQL code
 con.execute(create_sql)
 
 # 3) Execute the SQL sentences to insert your data using the SQLAlchemy's execute function
-# Leer el contenido del archivo insert.sql
+# Read insert.sql content
 with open('./src/sql/insert.sql') as file:
     insert_sql = file.read()
 
-# Ejecutar las sentencias SQL para insertar los datos
+# Execute the task
 con.execute(insert_sql)
 
 # 4) Use pandas to print one of the tables as dataframes using read_sql function
-# Leer la tabla "books" como un DataFrame
+# Read the "books" Table
 df = pd.read_sql('SELECT * FROM publishers', con=engine)
 
-# Imprimir el DataFrame sin el índice
+# Print the DataFrame
 print(df.to_string(index=False))
